@@ -1,15 +1,15 @@
 const TeacherSchema = require('../models/TeacherModel')
 
 exports.AddTeacher = async(req , res) => {
-    const { email ,name, PhoneNo,subject ,classes } = req.body ;
+    const { email ,name, PhoneNo,subject ,classes  , teachId} = req.body ;
     
     const teachers = TeacherSchema({
-        email ,name, PhoneNo,subject ,classes
+        email ,name, PhoneNo,subject ,classes,teachId
     }) 
 
     try {
 
-        if(!email || !name || !PhoneNo || !subject || !classes  ){
+        if(!email || !name || !PhoneNo || !subject || !classes  || !teachId){
             
             return res.status(400).json({message:"Fill All Fields Properly"})
         }

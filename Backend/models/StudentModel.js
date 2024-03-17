@@ -33,7 +33,12 @@ const StudentSchema = new mongoose.Schema({
         type:String , 
         required:true,
         trim:true , 
-    }]
+    }],
+    studId:{
+        type:String , 
+        required:true,
+        trim:true ,
+    }
 })
 
 module.exports = mongoose.model('Student' , StudentSchema) ;

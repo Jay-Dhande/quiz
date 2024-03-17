@@ -1,15 +1,15 @@
 const StudentSchema = require('../models/StudentModel') 
  
 exports.addStudent = async(req,res) => {
-    const {email ,name, PhoneNo,RollNo , subjects , grade } = req.body ; 
+    const {email ,name, PhoneNo,RollNo , subjects , grade ,studId } = req.body ; 
 
     const students = StudentSchema({
-        email ,name, PhoneNo,RollNo , subjects , grade
+        email ,name, PhoneNo,RollNo , subjects , grade ,studId
     }) 
 
     try {
 
-        if(!email || !name || !PhoneNo || !RollNo || !grade || !subjects  ){
+        if(!email || !name || !PhoneNo || !RollNo || !grade || !subjects || !studId ){
             
             return res.status(400).json({message:"Fill All Fields Properly"})
         }

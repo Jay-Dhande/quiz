@@ -1,47 +1,22 @@
 const mongoose = require("mongoose")
 // quizid, name, grade, date, time, duration, subject, type, pattern, marks, questions, instructions
-const QuizSchema = new mongoose.Schema({
+const QuestionSchema = new mongoose.Schema({
+    questId:{
+        type:String , 
+        required:true , 
+        trime:true
+    },
     quizId:{
         type:String , 
         required:true , 
         trime:true
     },
-    name:{
-        type:String , 
-        required:true , 
-        trime:true
-    },
-    grade:{
-        type:String , 
-        required:true ,
-        trime:true,
-    },
-    date:{
-        type:Date , 
-        required:true,
-        trim:true ,
-    },
-    time:{
-        type:String , 
-        required:true,
-        trim:true ,
-    },
-    duration:{
-        type:String , 
-        required:true,
-        trim:true ,
-    },
-    subject:[{
+    subject:{
         type:String , 
         required:true,
         trim:true , 
-    }], 
+    }, 
     type:{
-        type:String , 
-        required:true,
-        trim:true ,
-    },
-    pattern:{
         type:String , 
         required:true,
         trim:true ,
@@ -51,16 +26,36 @@ const QuizSchema = new mongoose.Schema({
         required:true,
         trim:true ,
     },
-    questions:{
+    question:{
         type:String , 
         required:true,
         trim:true ,
     }, 
-    instructions:{
+    optA:{
+        type:String , 
+        required:true,
+        trim:true ,
+    },
+    optB:{
+        type:String , 
+        required:true,
+        trim:true ,
+    },
+    optC:{
+        type:String , 
+        required:true,
+        trim:true ,
+    },
+    optD:{
+        type:String , 
+        required:true,
+        trim:true ,
+    },
+    correctOpt:{
         type:String , 
         required:true,
         trim:true ,
     }
 })
 
-module.exports = mongoose.model('Quiz' , QuizSchema) ;
+module.exports = mongoose.model('Question' , QuestionSchema) ;

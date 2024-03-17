@@ -5,7 +5,7 @@ import { useGlobalContext } from '../context/Globalcontext'
 
 export default function StudentForm() {
     const classes =  ['11' , '12'] ; 
-    const {addStudent} = useGlobalContext() ; 
+    const {addStudent , genstudId} = useGlobalContext() ; 
 
     const [inputState, setInputState] = useState({
         email:'',
@@ -14,9 +14,10 @@ export default function StudentForm() {
         RollNo:'' ,
         subjects: ['MATHS', 'PHYSICS', 'CHEMISTRY'],
         grade:'',
+        studId:'' , 
     })
     
-    const {email ,name, PhoneNo,RollNo , subjects , grade } = inputState ; 
+    const {email ,name, PhoneNo,RollNo , subjects , grade,studId } = inputState ; 
     
     const handleInput = name => e => {
         setInputState({...inputState , [name]:e.target.value})
@@ -27,6 +28,8 @@ export default function StudentForm() {
         e.preventDefault() ; 
         console.log("stud add req")
         try {
+            const id  =  genstudId() ;
+            inputState.studId = id ; 
             console.log("stud add req start")
             addStudent(inputState) ;
             console.log("stud added") 
@@ -36,7 +39,8 @@ export default function StudentForm() {
                 PhoneNo: '',
                 RollNo:'' ,
                 subjects: ['MATHS', 'PHYSICS', 'CHEMISTRY'],
-                grade:'', 
+                grade:'',
+                studId:'', 
              })
           
         } catch (error) {

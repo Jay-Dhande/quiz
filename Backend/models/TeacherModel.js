@@ -28,6 +28,11 @@ const TeacherSchema = new mongoose.Schema({
         required:true ,
         trime:true,
     }],
+    teachId:{
+        type:String , 
+        required:true ,
+        trime:true,
+    }
 })
 
 module.exports = mongoose.model('Teacher' , TeacherSchema) ;
