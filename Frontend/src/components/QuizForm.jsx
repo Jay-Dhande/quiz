@@ -10,7 +10,7 @@ export default function QuizForm() {
     const types = ['SINGLE CORRECT MCQ', 'MULTIPLE CORRECT MCQ', 'SUBJECTIVE']
     const subjects = ['PHYSICS', 'CHEMISTRY', 'MATHS', 'ALL']
     const [inputState, setInputState] = useState({
-        quizId: '',
+        quizid: '',
         name: '',
         grade: '',
         date: '',
@@ -23,7 +23,7 @@ export default function QuizForm() {
         questions: '',
         instructions: '',
     })
-    const { quizId, name, grade, date, time, duration, subject, type, pattern, marks, questions, instructions } = inputState;
+    const { quizid, name, grade, date, time, duration, subject, type, pattern, marks, questions, instructions } = inputState;
     const handleInput = name => e => {
         setInputState({ ...inputState, [name]: e.target.value })
 
@@ -49,7 +49,7 @@ export default function QuizForm() {
             addQuiz(inputState);
             console.log("quiz added")
             setInputState({
-                quizId: '',
+                quizid: '',
                 name: '',
                 grade: '',
                 date: '',

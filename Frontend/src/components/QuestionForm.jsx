@@ -10,9 +10,10 @@ export default function QuestionForm() {
 
     const types = ['SINGLE CORRECT MCQ', 'MULTIPLE CORRECT MCQ', 'SUBJECTIVE']
     const subjects = ['PHYSICS', 'CHEMISTRY', 'MATHS']
+    const opts = ['1','2','3','4']
 
     const [inputState, setInputState] = useState({
-        quizId: 1001,
+        quizid: 1001,
         questId:'',
         subject: '',
         type: '',
@@ -24,7 +25,7 @@ export default function QuestionForm() {
         optD:'',
         correctOpt:'',
     })
-    const { quizId, questId,subject,type,marks,question,optA,optB,optC,optD,correctOpt, } = inputState;
+    const { quizid, questId,subject,type,marks,question,optA,optB,optC,optD,correctOpt } = inputState;
    
     const handleInput = name => e => {
         setInputState({ ...inputState, [name]: e.target.value })
@@ -42,7 +43,7 @@ export default function QuestionForm() {
             addQuest(inputState);
             console.log("quest added")
             setInputState({
-                quizId: 1001,
+                quizid: 1001,
                 questId:'',
                 subject: '',
                 type: '',
@@ -145,9 +146,20 @@ export default function QuestionForm() {
                         ></textarea>
                 </div>
                 <div className="input-container">
-                    <input type="text" placeholder="Enter Correct Opt" 
-                    value={correctOpt} onChange={handleInput('correctOpt')} 
-                    />
+                    <select
+                        className="input"
+                        name="correctOpt "
+                        value={correctOpt }
+                        onChange={handleInput('correctOpt')}
+                        required
+                    >
+                        <option value="">Select Correct Ans</option>
+                        {opts.map((subject, index) => (
+                            <option key={index} >
+                                {subject}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 

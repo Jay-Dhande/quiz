@@ -9,26 +9,39 @@ import styled from 'styled-components';
 import ActiveTest from './ActiveTest';
 import QuizForm from './QuizForm';
 import QuestionForm from './QuestionForm';
+import QuizInstruction from './QuizInstruction';
+import Testpage from './Testpage';
+import { useGlobalContext } from '../context/Globalcontext';
 
 
 export default function Home() {
     const {LogOut } = useAuthContext() ; 
+    const {showInstruction ,setShowInstruction ,Test} =useGlobalContext() ; 
 
     const handlelogout = () => {
          LogOut() ; 
     }
 
-    
+
   return (
     <HomeStyled>
       {/* <Welcome/> */}
       {/* <TeacherForm/> */}
       {/* <StudentForm/> */}
-      {/* <ActiveTest/>
+ 
+
+     {!showInstruction ? 
+      <>
+      <ActiveTest/>
       <UpcomingTest/>
-      <Announcements/> */}
+      <Announcements/>
+      </>
+       : <QuizInstruction/> }
+    
+       
+      {/* <QuizInstruction/> */}
       {/* <QuizForm/> */}
-      <QuestionForm/>
+      {/* <QuestionForm/> */}
     {/* <button onClick={handlelogout}>LogOut</button> */}
     </HomeStyled>
   

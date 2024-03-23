@@ -8,6 +8,7 @@ import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Home from "./components/Home";
 import { GlobalContextProvider } from "./context/Globalcontext";
 import { useGlobalContext } from "./context/Globalcontext";
+import Testpage from "./components/Testpage";
 
 export default function App() {
   // const { isLoggedIn, setIsLoggedIn } = useGlobalContext();
@@ -23,6 +24,7 @@ export default function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/Home" element={<Home />} />
+                <Route path="/test" element={<Testpage/>} />
               </Route>
             </Routes>
           </AppStyled>

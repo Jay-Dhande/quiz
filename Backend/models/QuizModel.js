@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 // quizid, name, grade, date, time, duration, subject, type, pattern, marks, questions, instructions
 const QuizSchema = new mongoose.Schema({
-    quizId:{
+    quizid:{
         type:String , 
         required:true , 
         trime:true

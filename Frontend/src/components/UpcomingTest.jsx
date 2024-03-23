@@ -1,80 +1,62 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import { useGlobalContext } from '../context/Globalcontext'
+import QuizCard from './QuizCard';
 
 
 export default function UpcomingTest() {
-    return (
-        <UpcomingStyled>
-                <h2>Upcoming Test</h2>
-            <div class="cards">
-                {/* <div className="title">Upcoming Test</div> */}
-                <div class="card">
-                    <a class="card1" href="#">
-                        <p className='Name'>JEE MAIN</p>
-                        <div className="detail">
-                            <div className="date">DATE : 17-03-2024</div>
-                            <div className="Marks">MARKS : 300</div>
-                            <div className="duration">DURATION : 3 hrs</div>
-                        </div>
-                        <p class="small"></p>
-                        <div class="go-corner" href="#">
-                            <div class="go-arrow">
-                                →
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a class="card1" href="#">
-                        <p className='Name'>JEE MAIN</p>
-                        <div className="detail">
-                            <div className="date">DATE : 17-03-2024</div>
-                            <div className="Marks">MARKS : 300</div>
-                            <div className="duration">DURATION : 3 hrs</div>
-                        </div>
-                        <p class="small"></p>
-                        <div class="go-corner" href="#">
-                            <div class="go-arrow">
-                                →
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a class="card1" href="#">
-                        <p className='Name'>JEE MAIN</p>
-                        <div className="detail">
-                            <div className="date">DATE : 17-03-2024</div>
-                            <div className="Marks">MARKS : 300</div>
-                            <div className="duration">DURATION : 3 hrs</div>
-                        </div>
-                        <p class="small"></p>
-                        <div class="go-corner" href="#">
-                            <div class="go-arrow">
-                                →
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a class="card1" href="#">
-                        <p className='Name'>JEE MAIN</p>
-                        <div className="detail">
-                            <div className="date">DATE : 17-03-2024</div>
-                            <div className="Marks">MARKS : 300</div>
-                            <div className="duration">DURATION : 3 hrs</div>
-                        </div>
-                        <p class="small"></p>
-                        <div class="go-corner" href="#">
-                            <div class="go-arrow">
-                                →
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </UpcomingStyled>
-    )
+  const { GetQuiz, quiz } = useGlobalContext();
+
+  // student: {
+  //     name:"stud one",
+  //     email:"stud@skj",
+  //     PhoneNo:152,
+  //     RollNo:"9283766",
+  //     grade:"12",
+  //     subjects:["MATHS","PHYSICS", "CHEMISTRY"],
+  //     studId:"1001",
+  // }
+
+  useEffect(() => {
+    GetQuiz({ grade: "12" });
+  }, [])
+  console.log("quiz", quiz);
+  // Assuming quizzes is an array of objects containing quiz information
+  const today = new Date();
+  const upQuiz = quiz.filter(quiz => {
+    const quizDate = new Date(quiz.date);
+    return quizDate >= today;
+  });
+
+
+  return (
+    <UpcomingStyled>
+      <h2>Upcoming Test</h2>
+      <div class="cards">
+        {upQuiz.map(element => {
+          const { quizid, name, grade, date, time, duration, subject, type, pattern, marks, questions, instructions } = element;
+          console.log("element ", element)
+          return (
+            <QuizCard
+              quizid={element.quizid}
+              name={element.name}
+              grade={element.grade}
+              date={element.date}
+              time={element.time}
+              duration={element.duration}
+              subject={element.subject}
+              type={element.type}
+              pattern={element.pattern}
+              marks={element.marks}
+              questions={element.questions}
+              instructions={element.instructions}
+            />
+          )
+        })
+        }
+      </div>
+    </UpcomingStyled>
+  )
 }
 
 
@@ -88,13 +70,14 @@ align-items: center;
 /* border: 2px solid black; */
 padding: 1rem;
    .cards{
-    height: 60vh;
+    height: 34vh;
     overflow-y: scroll;
     /* scroll-margin: 1rem; */
     scroll-padding: 1rem;
     scroll-behavior: smooth;
    }
-    .card p {
+  
+   .card p {
   font-size: larger;
   font-weight: 400;
   line-height: 20px;
@@ -173,3 +156,20 @@ padding: 1rem;
 
 `
 
+//     <div class="card">
+//     <a class="card1" href="#">
+//         <p className='Name'>{element.name}</p>
+//         <div className="detail">
+//             <div className="date">DATE : {element.date}</div>
+//             <div className="Marks">MARKS : {element.marks}</div>
+//             <div className="time">TIME : {element.time}</div>
+//             <div className="duration">DURATION : {element.duration}minutes</div>
+//         </div>
+//         <p class="small"></p>
+//         <div class="go-corner" href="#">
+//             <div class="go-arrow">
+//                 →
+//             </div>
+//         </div>
+//     </a>
+// </div>
